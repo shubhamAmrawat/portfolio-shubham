@@ -45,21 +45,63 @@ export default function Contact() {
 
     setIsSubmitting(true);
 
-    // Mock API request delay
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+    // Fetch the access key from environment variables or use placeholder
+    const accessKey = import.meta.env.VITE_CONTACT_ACCESS_KEY || "YOUR_WEB3FORMS_ACCESS_KEY_HERE";
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+    if (accessKey === "YOUR_WEB3FORMS_ACCESS_KEY_HERE" || !accessKey) {
+      // Demo / Mock Mode: No key provided
+      console.warn("Contact form is running in DEMO mode. To receive real emails, create a .env file and add VITE_CONTACT_ACCESS_KEY=your-key.");
+      await new Promise((resolve) => setTimeout(resolve, 1200));
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      confetti({
+        particleCount: 80,
+        spread: 60,
+        origin: { y: 0.65 },
+        colors: ["#6366f1", "#8b5cf6", "#a855f7"],
+      });
+      setFormData({ name: "", email: "", subject: "", message: "" });
+      return;
+    }
 
-    // Trigger canvas confetti celebration
-    confetti({
-      particleCount: 80,
-      spread: 60,
-      origin: { y: 0.65 },
-      colors: ["#6366f1", "#8b5cf6", "#a855f7"],
-    });
+    // Real Mode: Send email via Web3Forms API
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: accessKey,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || "New Message from Portfolio Website",
+          message: formData.message,
+          from_name: `${formData.name} (Portfolio Contact)`,
+        }),
+      });
 
-    setFormData({ name: "", email: "", subject: "", message: "" });
+      const result = await response.json();
+
+      if (result.success) {
+        setIsSubmitted(true);
+        confetti({
+          particleCount: 80,
+          spread: 60,
+          origin: { y: 0.65 },
+          colors: ["#6366f1", "#8b5cf6", "#a855f7"],
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        alert("Error sending message: " + (result.message || "Please try again later."));
+      }
+    } catch (err) {
+      console.error("Form submission failed:", err);
+      alert("Failed to send message. Please check your network connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
