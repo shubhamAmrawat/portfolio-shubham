@@ -8,7 +8,7 @@ export const portfolioData = {
     location: "New Delhi, India",
     github: "https://github.com/shubhamAmrawat",
     linkedin: "https://linkedin.com/in/shubham-amrawat",
-    resumeUrl: "./Shubham_Amrawat_Resume.pdf", // Path to the local resume PDF
+    resumeUrl: "/Shubham_Amrawat_Resume.pdf",
     summary: "Highly motivated Software Developer specializing in the MERN/MEAN stack, React Native, and advanced AI integrations (OpenAI, Gemini APIs). Proven ability to deliver high-impact, full-stack applications, with production experience building robust authentication flows, scalable microservices, real-time messaging, and vector search systems. Eager to solve complex engineering challenges and drive product innovation.",
   },
   skills: [
@@ -186,7 +186,61 @@ export const portfolioData = {
         }
       ],
       impact: "Built a fully automated asset-processing pipeline capable of indexing high-resolution visual contents and serving them through state-of-the-art vector searches."
-    }
+    },
+    {
+id: "extractly",
+title: "EXTRACTLY",
+subtitle: "All-in-One Media Extraction & File Conversion Platform",
+description: "A modern full-stack digital utility platform that unifies file conversion, media extraction, compression, and creator-focused tools into a single high-performance ecosystem with an elegant, minimal SaaS experience.",
+liveUrl: "https://extractly.com",
+githubUrl: "https://github.com/shubhamAmrawat",
+techStack: [
+"Next.js 16",
+"TypeScript",
+"Tailwind CSS v4",
+"shadcn/ui",
+"Framer Motion",
+"Node.js",
+"NestJS",
+"PostgreSQL",
+"Redis",
+"BullMQ",
+"FFmpeg",
+"yt-dlp",
+"Cloudflare R2",
+"Docker",
+"JWT Authentication",
+"REST APIs"
+],
+highlights: [
+{
+title: "Distributed Media Processing Architecture",
+detail: "Architected a queue-driven processing system using BullMQ and Redis to offload CPU-intensive media operations into isolated worker pipelines. Designed the backend to support concurrent file conversions, audio extraction, compression, and social-media media downloads without blocking core API services."
+},
+{
+title: "Advanced FFmpeg Transformation Pipeline",
+detail: "Integrated FFmpeg-based processing workers capable of handling video transcoding, audio extraction, compression, thumbnail generation, and multi-format conversions. Engineered a scalable temporary-file lifecycle system with automated cleanup and streaming-safe processing flows."
+},
+{
+title: "Unified Multi-Platform Media Extraction",
+detail: "Built a universal extraction engine powered by yt-dlp supporting YouTube, Instagram, Pinterest, and multiple creator platforms. Implemented dynamic metadata parsing, quality selection, format negotiation, and resilient fallback handling for unstable media sources."
+},
+{
+title: "Premium Minimal SaaS Interface",
+detail: "Designed and developed a refined utility-first frontend inspired by Linear, Vercel, and Raycast. Focused heavily on whitespace, typography hierarchy, predictable interaction patterns, and frictionless upload workflows to create a calm, distraction-free user experience."
+},
+{
+title: "Scalable Upload & Object Storage Infrastructure",
+detail: "Engineered a secure upload pipeline with Cloudflare R2 object storage, signed upload URLs, streaming downloads, and optimized delivery flows. Built the system to efficiently manage large media files while minimizing server bandwidth overhead."
+},
+{
+title: "Modular Tool Ecosystem & Extensible Architecture",
+detail: "Structured the platform around reusable conversion modules and processing adapters, enabling rapid expansion into new utility categories such as PDF tooling, image optimization, AI-powered extraction, OCR workflows, and future automation utilities."
+}
+],
+impact: "Created a production-grade digital utility ecosystem that centralizes media extraction, file conversion, and creator workflows into a single elegant platform optimized for speed, usability, and scalability."
+}
+
   ],
   education: [
     {
